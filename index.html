@@ -1,1 +1,52 @@
-html     <meta name=viewport content=width=device-width, initial-scale=1> BURN  body,html{margin:0;height:100%;background:#000;color:#fff;font-family:Arial;overflow:hidden} #gate{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;gap:40px} #logo{font-size:140px;letter-spacing:-12px;background:linear-gradient(0deg,#fff,#00eeff,#ff0066);background-clip:text;-webkit-background-clip:text;color:transparent; text-shadow:0 0 30px #f00,0 0 60px #00f;animation:logoBurn 4s infinite} @keyframes logoBurn{0%,100%{text-shadow:0 0 30px #f00,0 0 60px #00f} 50%{text-shadow:0 0 50px #f00,0 0 90px #00f,0 0 120px #ff0}} .flame{width:100px;height:140px;background:radial-gradient(circle at 50% 20%,#00eeff 0%,#0066ff 40%,transparent 70%); border-radius:50% 50% 50% 50%/60% 60% 40% 40%;animation:flame 2s infinite alternate} @keyframes flame{0%{transform:scaleY(.9);opacity:.7} 100%{transform:scaleY(1.1);opacity:1;box-shadow:0 0 40px #00eeff}} #prompt{font-size:40px;letter-spacing:3px;text-shadow:0 0 15px #fff} #input{width:88%;max-width:700px;height:70px;font-size:26px;padding:0 20px;background:#111;border:3px solid #00eeff;border-radius:20px;color:#fff;box-shadow:0 0 20px #00eeff} #input:focus{outline:none;box-shadow:0 0 40px #00eeff} #response{font-size:32px;margin-top:20px;opacity:0;animation:fade 1s forwards} @keyframes fade{to{opacity:1}} #world{display:none;height:100vh;background:#000;color:#00eeff;font-size:80px; display:flex;align-items:center;justify-content:center}     B U R N  ROAST ME    THE ARENA  document.getElementById('input').addEventListener('keypress', e => { if (e.key === 'Enter' && e.target.value.trim()) { const roast = e.target.value.trim(); const score = (Math.random() 9 + 1).toFixed(1); const replies = score > 7 ? ['damn... ' + score, 'that actually stung', 'ok you win this round'] : score > 4 ? ['mid. ' + score, 'i felt that... barely', 'cute'] : ['weak. ' + score, 'my grandma hits harder', 'bro deleted']; const reply = replies[Math.floor(Math.random() replies.length)]; document.getElementById('response').textContent = reply + ' — ' + score + '/10'; setTimeout(() => { document.getElementById('gate').style.opacity = '0'; setTimeout(() => { document.getElementById('gate').remove(); document.getElementById('world').style.display = 'flex'; }, 600); }, 1500); } });
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BURN</title>
+  <style>
+    body, html { margin: 0; height: 100%; background: #000; color: #fff; font-family: Arial, sans-serif; overflow: hidden; }
+    #gate { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; gap: 40px; }
+    #logo { font-size: 140px; letter-spacing: -12px; background: linear-gradient(0deg, #fff, #00eeff, #ff0066); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 0 0 30px #f00, 0 0 60px #00f; animation: logoBurn 4s infinite; }
+    @keyframes logoBurn { 0%,100% { text-shadow: 0 0 30px #f00, 0 0 60px #00f; } 50% { text-shadow: 0 0 50px #f00, 0 0 90px #00f, 0 0 120px #ff0; } }
+    .flame { width: 100px; height: 140px; background: radial-gradient(circle at 50% 20%, #00eeff 0%, #0066ff 40%, transparent 70%); border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; animation: flameAnim 2s infinite alternate; }
+    @keyframes flameAnim { 0% { transform: scaleY(0.9); opacity: 0.7; } 100% { transform: scaleY(1.1); opacity: 1; box-shadow: 0 0 40px #00eeff; } }
+    #prompt { font-size: 40px; letter-spacing: 3px; text-shadow: 0 0 15px #fff; }
+    #input { width: 88%; max-width: 700px; height: 70px; font-size: 26px; padding: 0 20px; background: #111; border: 3px solid #00eeff; border-radius: 20px; color: #fff; box-shadow: 0 0 20px #00eeff; }
+    #input:focus { outline: none; box-shadow: 0 0 40px #00eeff; }
+    #response { font-size: 32px; margin-top: 20px; opacity: 0; animation: fade 1s forwards; }
+    @keyframes fade { to { opacity: 1; } }
+    #world { display: none; height: 100vh; background: #000; color: #00eeff; font-size: 80px; display: flex; align-items: center; justify-content: center; }
+  </style>
+</head>
+<body>
+  <div id="gate">
+    <div id="logo">B U R N</div>
+    <div class="flame"></div>
+    <div id="prompt">ROAST ME</div>
+    <input id="input" placeholder="type fire..." autofocus>
+    <div id="response"></div>
+  </div>
+  <div id="world">THE ARENA</div>
+  <script>
+    const input = document.getElementById('input');
+    input.addEventListener('keypress', e => {
+      if (e.key === 'Enter' && input.value.trim()) {
+        const roast = input.value.trim();
+        const score = (Math.random() * 9 + 1).toFixed(1);
+        const replies = score > 7 ? ['damn... ' + score, 'that actually stung', 'ok you win this round'] : score > 4 ? ['mid. ' + score, 'i felt that... barely', 'cute'] : ['weak. ' + score, 'my grandma hits harder', 'bro deleted'];
+        const reply = replies[Math.floor(Math.random() * replies.length)];
+        document.getElementById('response').textContent = reply + ' — ' + score + '/10';
+        setTimeout(() => {
+          document.getElementById('gate').style.opacity = '0';
+          setTimeout(() => {
+            document.getElementById('gate').remove();
+            document.getElementById('world').style.display = 'flex';
+          }, 600);
+        }, 1500);
+        input.value = '';
+      }
+    });
+  </script>
+</body>
+</html>
