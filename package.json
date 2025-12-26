@@ -1,0 +1,16 @@
+{
+  "name": "burn",
+  "version": "1.0.0",
+  "description": "Roast or get Roasted - A fun interactive roasting game",
+  "type": "module",
+  "scripts": {
+    "dev": "python3 -m http.server 3000",
+    "build": "echo 'No build needed for static site'"
+  },
+  "keywords": ["roast", "game", "interactive"],
+  "author": "Lizardblood",
+  "license": "MIT",
+  "dependencies": {
+    "@vercel/speed-insights": "^1.0.0"
+  }
+}
